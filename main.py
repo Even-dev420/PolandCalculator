@@ -3,9 +3,8 @@
 """
 priority = {"+": 1, "-": 1, "*": 2, "/": 2, "%": 2, "^": 3}
 
-
 def tokenize(expr):
-    """Splits a string into numbers and operators"""
+    """Разбивает строку на числа и операторы"""
     tokens = []
     i = 0
     while i < len(expr):
