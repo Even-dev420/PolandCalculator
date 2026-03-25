@@ -1,16 +1,11 @@
 """
-Poland Calculator - Калькулятор c обратной польской нотацией (ОПН/RPN)
-
-Преобразует инфиксные выражения в постфиксные и вычисляет результат.
-Поддерживает операции: +, -, *, /, %, ^
-Приоритеты: ^ (3) > *, /, % (2) > +, - (1)
+Калькулятор c обратной польской нотацией
 """
-
 priority = {"+": 1, "-": 1, "*": 2, "/": 2, "%": 2, "^": 3}
 
 
 def tokenize(expr):
-    """Разбивает строку на числа и операторы"""
+    """Splits a string into numbers and operators"""
     tokens = []
     i = 0
     while i < len(expr):
@@ -93,7 +88,7 @@ def eval_rpn(rpn):
 
 
 def calculate(expr):
-    """Основная функция калькулятора"""
+    """Посчитать выражение"""
     print(f"\nExpression: {expr}")
 
     tokens = tokenize(expr)
@@ -104,7 +99,6 @@ def calculate(expr):
 
     result = eval_rpn(rpn)
 
-    # Красивый вывод (без .0 для целых чисел)
     if result == int(result):
         return int(result)
     return result
@@ -127,12 +121,3 @@ if __name__ == "__main__":
 
     for test_expr in test_exprs:
         calculate(test_expr)
-
-    # Интерактивный режим
-    print("\n--- input your problem (or 'q' for exit) ---")
-    while True:
-        user_input = input("> ")
-        if user_input.lower() == "q":
-            break
-        if user_input:
-            calculate(user_input)
