@@ -29,6 +29,7 @@ def infix_to_rpn(tokens):
     output = []
     stack = []
 
+
     for token in tokens:
         if token.replace(".", "").isdigit():  # Если число
             output.append(token)
@@ -97,6 +98,7 @@ def calculate(expr):
     print(f"REVPOL: {' '.join(rpn)}")
 
     result = eval_rpn(rpn)
+    print(f"Result: {result}")
 
     if result == int(result):
         return int(result)
@@ -106,17 +108,14 @@ def calculate(expr):
 # Примеры использования
 if __name__ == "__main__":
     print("=== Poland Calculator")
-    print("Operations: + - * / % ^   Brackets: ( )")
-    print("Example: 2 + 3 * 4\n")
 
     # Тестовые примеры
     test_exprs = [
         "2 + 3 * 4",
-        "(2 + 3) * 4",
         "2 + 3 * (4 - 1) ^ 2",
-        "10 / 2 + 3",
-        "2 ^ 3 ^ 2",
+        "( 10 + 5 ) / 3"
     ]
 
     for test_expr in test_exprs:
         calculate(test_expr)
+
