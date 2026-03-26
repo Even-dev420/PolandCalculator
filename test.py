@@ -30,7 +30,7 @@ class TestTokenize(unittest.TestCase):
         expected = ["1", "+", "2", "-", "3", "*", "4", "/", "5", "%", "6", "^", "7"]
         self.assertEqual(result, expected)
 
-    def test_parentheses(self):
+    def test_brackets(self):
         """Brackets"""
         self.assertEqual(tokenize("(1 + 2)"), ["(", "1", "+", "2", ")"])
         self.assertEqual(tokenize("((1 + 2))"), ["(", "(", "1", "+", "2", ")", ")"])
@@ -83,14 +83,14 @@ class TestInfixToRPN(unittest.TestCase):
             infix_to_rpn(["2", "+", "3", "^", "2"]), ["2", "3", "2", "^", "+"]
         )
 
-    def test_parentheses_override(self):
+    def test_brackets_override(self):
         """Brackets override"""
         # (1 + 2) * 3 → 1 2 + 3 *
         self.assertEqual(
             infix_to_rpn(["(", "1", "+", "2", ")", "*", "3"]), ["1", "2", "+", "3", "*"]
         )
 
-    def test_nested_parentheses(self):
+    def test_nested_brackets(self):
         """Nested brackets"""
         # ((1 + 2) * 3) → 1 2 + 3 *
         result = infix_to_rpn(["(", "(", "1", "+", "2", ")", "*", "3", ")"])
@@ -181,7 +181,7 @@ class TestCalculate(unittest.TestCase):
         self.assertEqual(calculate("2 + 3 * 4"), 14)
         self.assertEqual(calculate("10 - 2 * 3"), 4)
 
-    def test_parentheses(self):
+    def test_brackets(self):
         """Brackets"""
         self.assertEqual(calculate("(2 + 3) * 4"), 20)
         self.assertEqual(calculate("2 + (3 * 4)"), 14)
@@ -209,7 +209,7 @@ class TestCalculate(unittest.TestCase):
         self.assertEqual(calculate("2 ^ 3"), 8)
         self.assertEqual(calculate("2 ^ 10"), 1024)
 
-    def test_nested_parentheses(self):
+    def test_nested_brackets(self):
         """Nested brackets"""
         self.assertEqual(calculate("((2 + 3) * 4)"), 20)
         self.assertEqual(calculate("(1 + 2) * (3 + 4)"), 21)
