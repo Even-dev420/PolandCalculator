@@ -118,4 +118,3 @@ if __name__ == "__main__":
 
     for test_expr in test_exprs:
         calculate(test_expr)
-        
